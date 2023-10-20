@@ -1,7 +1,7 @@
 
 ### Usuários:
 - Organizações/projetos pessoais
-  As organizações são uma funcionalidade do GitHub que permite que grupos de pessoas colaborem de maneira eficaz em projetos de software. As organizações oferecem recursos de gerenciamento de equipes, controle de acesso e permissões, bem como ferramentas de colaboração aprimoradas para projetos de código-fonte aberto ou privados. Esta documentação fornece informações detalhadas sobre como criar, configurar e usar organizações no GitHub, permitindo que equipes e comunidades colaborem de forma mais eficaz em seus projetos.
+As organizações são uma funcionalidade do GitHub que permite que grupos de pessoas colaborem de maneira eficaz em projetos de software. As organizações oferecem recursos de gerenciamento de equipes, controle de acesso e permissões, bem como ferramentas de colaboração aprimoradas para projetos de código-fonte aberto ou privados. Esta documentação fornece informações detalhadas sobre como criar, configurar e usar organizações no GitHub, permitindo que equipes e comunidades colaborem de forma mais eficaz em seus projetos.
   
 - Comunidade e comentários
 A comunidade no GitHub desempenha um papel essencial na evolução e no desenvolvimento de projetos de software. A relação entre a comunidade e os comentários na plataforma é fundamental para aprimorar a qualidade e a eficácia das colaborações. Os comentários são a principal ferramenta de interação, compartilhamento de informações e melhoria de projetos de código-fonte aberto e privados. Por meio de Pull Requests, os membros da comunidade submetem seu trabalho para revisão, permitindo que outros revisem o código, ofereçam sugestões e contribuam para a segurança e a qualidade do código.
@@ -15,20 +15,8 @@ A documentação é uma parte crucial para qualquer projeto no GitHub. Ela descr
 As licenças são vitais para a governança dos projetos no GitHub. Elas estabelecem os termos e condições sob os quais o software pode ser usado, modificado e redistribuído. A escolha de uma licença é uma decisão importante para os mantenedores de projetos, pois determina como outros podem usar seu trabalho. Projetos de código aberto geralmente usam licenças de código aberto, como a MIT, a GNU GPL ou a Apache License, que permitem o uso, a modificação e a redistribuição do código, com algumas restrições. As licenças promovem a colaboração aberta e permitem que a comunidade contribua com confiança, sabendo que os termos de uso estão claros.
 
 - Softwares de terceiros como VScode e sua integração
+A integração do GitHub com o VSCode e outras ferramentas de desenvolvimento é crucial, simplificando o fluxo de trabalho, oferecendo controle de versão direto, permitindo acesso a recursos do GitHub, assegurando autenticação segura, automatizando tarefas e fornecendo notificações em tempo real. Essa colaboração eficaz economiza tempo, melhora a gestão de projetos e fortalece a segurança, tornando o desenvolvimento mais eficiente e eficaz.
 
-A importância das integrações do GitHub com o VSCode e outras ferramentas de desenvolvimento é significativa. Aqui estão alguns pontos-chave:
-
-1. **Fluxo de trabalho eficiente:** A integração permite que os desenvolvedores acessem, modifiquem e gerenciem repositórios do GitHub diretamente do ambiente de desenvolvimento, como o VSCode. Isso economiza tempo e minimiza a necessidade de alternar entre diferentes aplicativos.
-
-2. **Controle de versão simplificado:** As integrações facilitam o controle de versão e o gerenciamento de ramos, permitindo que os desenvolvedores realizem ações como fazer check-in, fazer commit, mesclar e criar ramificações diretamente da interface de suas ferramentas de desenvolvimento.
-
-3. **Acesso a recursos do GitHub:** Os desenvolvedores podem revisar Pull Requests, comentar problemas e acessar informações importantes sobre projetos diretamente do VSCode ou outras ferramentas. Isso torna a colaboração mais eficaz.
-
-4. **Autenticação e segurança:** As integrações garantem que os desenvolvedores possam autenticar-se com segurança no GitHub e acessar repositórios privados ou protegidos por autenticação de dois fatores.
-
-5. **Automatização de fluxo de trabalho:** As integrações podem ser usadas para automatizar tarefas, como construir, testar e implantar, tornando os processos de desenvolvimento mais eficientes.
-
-6. **Notificações em tempo real:** As ferramentas de desenvolvimento podem fornecer notificações em tempo real sobre atividades em repositórios do GitHub, garantindo que os desenvolvedores estejam atualizados sobre as mudanças no código.
 ### Segurança: 
 - Autenticação dos usuários e organizações 
 Usuários do GitHub, incluindo desenvolvedores individuais, colaboradores, profissionais de TI e educadores, utilizam a plataforma para desenvolver, colaborar e aprender. Organizações, como empresas, projetos de código aberto, instituições de ensino e equipes de desenvolvimento, confiam no GitHub para gerenciar e colaborar em projetos de software. O GitHub é uma ferramenta fundamental que apoia uma ampla gama de usuários e organizações em suas atividades de desenvolvimento de software.
@@ -47,6 +35,7 @@ O GitHub simplificou o processo de backup de repositórios com seu guia "Backing
 
 
 ### fontes
+- https://github.blog/2023-04-06-building-github-with-ruby-and-rails/
 - https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/about-organizations
 - https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/about-organizations
 - https://docs.github.com/pt/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository
