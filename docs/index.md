@@ -32,66 +32,68 @@ O GitHub, como uma plataforma de desenvolvimento de software em escala global, d
 - backups 
 O GitHub simplificou o processo de backup de repositórios com seu guia "Backing up a repository". Realizar backups regulares é essencial para proteger o trabalho de desenvolvedores contra perdas potenciais devido a falhas de hardware, erros humanos ou ameaças cibernéticas. O processo envolve a clonagem do repositório localmente, uso de serviços como o Git LFS para arquivos grandes e a criação de um arquivo de backup do banco de dados. Este processo, conforme delineado no artigo do GitHub, garante a integridade e a segurança dos dados, permitindo que desenvolvedores protejam seu trabalho valioso de forma eficaz.
 
-### Descrição da arquitetura do sistema do GitHub
+
+
+# Descrição da arquitetura do GitHub
 
 A arquitetura do GitHub é um sistema complexo e em constante evolução. Aqui estão algumas informações gerais sobre sua arquitetura e decisões de projeto:
 
-Arquitetura Geral:
+### Arquitetura Geral
 
 O GitHub é construído em uma arquitetura de microsserviços, onde diferentes funcionalidades são fornecidas por serviços independentes. Utiliza uma arquitetura orientada a eventos para facilitar a escalabilidade e a manutenção.
 
-Linguagens de Programação:
+### Linguagens de Programação
 
 A base do GitHub é Ruby on Rails, uma estrutura de desenvolvimento web em Ruby, conhecida por sua simplicidade e produtividade. Além do Ruby, o GitHub utiliza outras linguagens, como JavaScript (para o frontend) e várias linguagens para microsserviços específicos.
 
-Banco de Dados:
+### Banco de Dados
 
 Inicialmente, o GitHub utilizava MySQL como banco de dados principal. Com o tempo, devido ao crescimento exponencial de dados, começou a adotar tecnologias de banco de dados NoSQL, como o Bigtable do Google Cloud.
 
-Elasticsearch:
+### Elasticsearch
 
 O Elasticsearch é usado para recursos de pesquisa, proporcionando uma experiência de pesquisa rápida e eficiente.
 
-Armazenamento de Dados:
+### Armazenamento de Dados
 
 O GitHub utiliza o sistema de arquivos distribuído Git para armazenar repositórios de código. Usa Amazon S3 para armazenamento de objetos binários e outros dados.
 
-Segurança:
+### Segurança
 
 Incorpora HTTPS em toda a plataforma para garantir a segurança das transações.
 Utiliza autenticação de dois fatores (2FA) para proteger as contas dos usuários.
 
-Microsserviços:
+### Microsserviços
 
 A arquitetura de microsserviços permite que diferentes partes da aplicação evoluam independentemente. Cada funcionalidade, como controle de versão, issues, pull requests, etc, é tratada por um microsserviço específico.
 
-Frontend:
+### Frontend
 
 Usa React.js para construir interfaces de usuário interativas e responsivas. Adota GraphQL para otimizar as consultas e reduzir a quantidade de dados transferidos.
 Integração Contínua/Entrega Contínua (CI/CD):
 
 Adota práticas robustas de CI/CD para automatizar a construção, teste e implantação de software.
 
-Escalabilidade:
+### Escalabilidade
 
 A arquitetura foi projetada para escalar horizontalmente, permitindo lidar com um grande volume de tráfego.
 
-Histórico de Mudanças:
+### Histórico de Mudanças
 
 O GitHub mantém um registro público de mudanças no repositório GitHub Archive. Muitas decisões de projeto e mudanças específicas podem ser rastreadas nos repositórios públicos do GitHub.
 
-Desenvolvimento Aberto:
+### Desenvolvimento Aberto
 
 O GitHub opera como uma plataforma de desenvolvimento aberto, permitindo que desenvolvedores externos contribuam para projetos de código aberto. É importante notar que essas informações são de natureza geral, e a arquitetura exata e as tecnologias utilizadas podem ter evoluído ao longo do tempo. O GitHub é uma plataforma dinâmica que se adapta para atender às crescentes demandas da comunidade de desenvolvimento.
 
-Protocolos: 
+### Protocolos
 
 O GitHub utiliza três protocolos principais. Esses são SSH, HTTP e Git. O SSH é utilizado quando o usuário está usando operações de “clone”, “push” ou “pull”. Já o HTTP é usado ao navegar no sistema em um navegador. Enquanto o protocolo Git é para quando as operações de “pull” ou “clone” são usadas em um repositório público via URL.
 
 
 
 
-### fontes
+## fontes
 - https://github.blog/2023-04-06-building-github-with-ruby-and-rails/
 - https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/about-organizations
 - https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/about-organizations
