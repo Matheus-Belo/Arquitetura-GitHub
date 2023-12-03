@@ -90,7 +90,27 @@ O GitHub opera como uma plataforma de desenvolvimento aberto, permitindo que des
 
 O GitHub utiliza três protocolos principais. Esses são SSH, HTTP e Git. O SSH é utilizado quando o usuário está usando operações de “clone”, “push” ou “pull”. Já o HTTP é usado ao navegar no sistema em um navegador. Enquanto o protocolo Git é para quando as operações de “pull” ou “clone” são usadas em um repositório público via URL.
 
+# Descrição das tecnologias
 
+- Git: O GitHub é construído sobre o sistema de controle de versão distribuído Git, desenvolvido por Linus Torvalds. O Git é amplamente utilizado para rastreamento de alterações em código fonte e colaboração entre desenvolvedores.
+
+- REST API: O GitHub expõe uma API RESTful que permite interações programáticas com seus serviços. A API oferece funcionalidades como gerenciamento de repositórios, problemas, pull requests e muito mais. Referência: [GitHub REST API v3][https://docs.github.com/en/rest].
+
+- GraphQL API: Além da REST API, o GitHub também fornece uma API GraphQL que permite aos usuários buscar dados de forma mais flexível e eficiente, adaptando as consultas às suas necessidades específicas. Referência: [GitHub GraphQL API v4][https://docs.github.com/en/graphql].
+
+- Webhooks: O GitHub utiliza webhooks para notificar sistemas externos sobre eventos em repositórios. Isso permite integrações com serviços de CI/CD (Integração Contínua/Entrega Contínua), automações e outras ferramentas. Referência: [GitHub Webhooks][https://docs.github.com/en/developers/webhooks-and-events/webhooks].
+
+- GitHub Actions: Um sistema de automação que permite a criação de fluxos de trabalho personalizados para automação de processos, como CI/CD, teste de código e deploy. Referência: [GitHub Actions][https://docs.github.com/en/actions].
+
+- Git LFS (Large File Storage): Para gerenciar arquivos grandes, o GitHub suporta a extensão Git LFS, que gerencia grandes arquivos binários de forma eficiente. Referência: [Git LFS][https://git-lfs.github.com/].
+
+- OAuth: Para autenticação de usuários e aplicativos de terceiros, o GitHub utiliza o protocolo OAuth. Isso permite que os usuários concedam acesso seguro a seus repositórios sem compartilhar suas credenciais diretamente. Referência: [OAuth][https://docs.github.com/en/developers/apps/building-oauth-apps].
+
+- Actions Runners: Para execução de trabalhos automatizados nos fluxos de trabalho do GitHub Actions, são utilizados agentes chamados Actions Runners. Esses agentes podem ser hospedados em infraestrutura própria ou fornecidos pelo GitHub. Referência: [GitHub Actions Runners][https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners].
+
+- Markdown: O GitHub utiliza a linguagem de marcação Markdown para formatação de texto em diversas partes da plataforma, como descrições de repositórios, issues e pull requests. Referência: [Mastering Markdown][https://guides.github.com/features/mastering-markdown/].
+
+- Octicons: Um conjunto de ícones criado pelo GitHub e utilizado em sua interface. Referência: [Octicons][https://octicons.github.com/].
 
 
 ## fontes
