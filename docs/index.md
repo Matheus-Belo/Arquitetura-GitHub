@@ -92,25 +92,359 @@ O GitHub utiliza três protocolos principais. Esses são SSH, HTTP e Git. O SSH 
 
 # Descrição das tecnologias
 
-- Git: O GitHub é construído sobre o sistema de controle de versão distribuído Git, desenvolvido por Linus Torvalds. O Git é amplamente utilizado para rastreamento de alterações em código fonte e colaboração entre desenvolvedores.
+### Git
+O GitHub é construído sobre o sistema de controle de versão distribuído Git, desenvolvido por Linus Torvalds. O Git é amplamente utilizado para rastreamento de alterações em código fonte e colaboração entre desenvolvedores.
 
-- REST API: O GitHub expõe uma API RESTful que permite interações programáticas com seus serviços. A API oferece funcionalidades como gerenciamento de repositórios, problemas, pull requests e muito mais. Referência: [GitHub REST API v3][https://docs.github.com/en/rest].
+### REST API 
+O GitHub expõe uma API RESTful que permite interações programáticas com seus serviços. A API oferece funcionalidades como gerenciamento de repositórios, problemas, pull requests e muito mais. Referência: [GitHub REST API v3][https://docs.github.com/en/rest].
 
-- GraphQL API: Além da REST API, o GitHub também fornece uma API GraphQL que permite aos usuários buscar dados de forma mais flexível e eficiente, adaptando as consultas às suas necessidades específicas. Referência: [GitHub GraphQL API v4][https://docs.github.com/en/graphql].
+### GraphQL API
+Além da REST API, o GitHub também fornece uma API GraphQL que permite aos usuários buscar dados de forma mais flexível e eficiente, adaptando as consultas às suas necessidades específicas.
 
-- Webhooks: O GitHub utiliza webhooks para notificar sistemas externos sobre eventos em repositórios. Isso permite integrações com serviços de CI/CD (Integração Contínua/Entrega Contínua), automações e outras ferramentas. Referência: [GitHub Webhooks][https://docs.github.com/en/developers/webhooks-and-events/webhooks].
+Aqui estão alguns exemplos práticos de como você pode usar a API GraphQL do GitHub:
 
-- GitHub Actions: Um sistema de automação que permite a criação de fluxos de trabalho personalizados para automação de processos, como CI/CD, teste de código e deploy. Referência: [GitHub Actions][https://docs.github.com/en/actions].
+- **Obtendo Informações de um Repositório:**
+```
+query {
+  repository(owner: "owner", name: "repo") {
+    name
+    description
+    stargazerCount
+    forkCount
+  }
+}
+```
 
-- Git LFS (Large File Storage): Para gerenciar arquivos grandes, o GitHub suporta a extensão Git LFS, que gerencia grandes arquivos binários de forma eficiente. Referência: [Git LFS][https://git-lfs.github.com/].
+- **Listando Issues em um Repositório:**
+```
+query {
+  repository(owner: "owner", name: "repo") {
+    issues(states: OPEN) {
+      nodes {
+        title
+        body
+      }
+    }
+  }
+}
+```
 
-- OAuth: Para autenticação de usuários e aplicativos de terceiros, o GitHub utiliza o protocolo OAuth. Isso permite que os usuários concedam acesso seguro a seus repositórios sem compartilhar suas credenciais diretamente. Referência: [OAuth][https://docs.github.com/en/developers/apps/building-oauth-apps].
+- **Criando uma Issue:**
+```
+mutation {
+  createIssue(input: { repositoryId: "repoID", title: "Nova Issue", body: "Descrição da nova issue" }) {
+    issue {
+      title
+      body
+    }
+  }
+}
+```  
 
-- Actions Runners: Para execução de trabalhos automatizados nos fluxos de trabalho do GitHub Actions, são utilizados agentes chamados Actions Runners. Esses agentes podem ser hospedados em infraestrutura própria ou fornecidos pelo GitHub. Referência: [GitHub Actions Runners][https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners].
+- **Obtendo a Lista de Branches:**
+```
+query {
+  repository(owner: "owner", name: "repo") {
+    refs(refPrefix: "refs/heads/", first: 10) {
+      nodes {
+        name
+      }
+    }
+  }
+}
+```
 
-- Markdown: O GitHub utiliza a linguagem de marcação Markdown para formatação de texto em diversas partes da plataforma, como descrições de repositórios, issues e pull requests. Referência: [Mastering Markdown][https://guides.github.com/features/mastering-markdown/].
+- **Obtendo a Lista de Commits:**
+```
+query {
+  repository(owner: "owner", name: "repo") {
+    defaultBranchRef {
+      target {
+        ... on Commit {
+          history(first: 10) {
+            nodes {
+              message
+              author {
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
-- Octicons: Um conjunto de ícones criado pelo GitHub e utilizado em sua interface. Referência: [Octicons][https://octicons.github.com/].
+```
+
+Referência: [GitHub GraphQL API v4][https://docs.github.com/en/graphql].
+
+### Webhooks 
+Os webhooks são mecanismos de comunicação entre sistemas, permitindo que um aplicativo ou serviço seja notificado automaticamente quando eventos específicos ocorrem em outro sistema. Em termos simples, um webhook é uma forma de automatizar a comunicação entre diferentes serviços na web.
+
+No contexto do GitHub, os webhooks são usados para que eventos dentro de um repositório (como push de código, criação de issues, pull requests, etc.) acionem a execução de ações em serviços externos. Em vez de verificar manualmente por alterações, o GitHub envia automaticamente uma solicitação HTTP para um URL específico (o endpoint do webhook) sempre que um evento ocorre.
+Aqui estão os passos básicos de como os webhooks funcionam:
+
+- Configuração:
+	O administrador do repositório configura um webhook no GitHub, fornecendo a URL do serviço externo que deve ser notificado.
+
+- Registro de Eventos:
+	O administrador do repositório escolhe quais eventos específicos devem acionar o webhook (por exemplo, push de código, criação de issues, etc.).
+
+- Evento Ocorre:
+	Quando o evento escolhido ocorre (por exemplo, alguém faz push de código para o repositório), o GitHub envia uma solicitação HTTP POST para a URL do webhook configurada.
+
+- Processamento Externo:
+	O serviço externo recebe a solicitação do webhook e executa ações específicas com base nos dados do evento. Isso pode incluir a execução de testes automáticos, integração contínua, notificações, entre outras coisas.
+
+No GitHub, os webhooks são usados para uma variedade de propósitos, incluindo:
+
+- Integração Contínua (CI/CD): Notificar serviços de integração contínua quando novos commits são enviados para um repositório.
+
+- Automação de Fluxo de Trabalho: Acionar scripts ou processos automatizados em resposta a eventos específicos, como a criação de pull requests.
+
+- Notificações: Integrar serviços de notificação para alertar equipes sobre atividades importantes em um repositório.
+
+Para configurar um webhook no GitHub, você normalmente precisa fornecer a URL do endpoint do webhook, escolher os eventos que deseja monitorar e configurar opções adicionais, como segredos para autenticação.
+
+Referência: [GitHub Webhooks][https://docs.github.com/en/developers/webhooks-and-events/webhooks].
+
+### GitHub Actions 
+O GitHub Actions é uma ferramenta poderosa de automação integrada diretamente ao GitHub, permitindo que você automatize fluxos de trabalho (workflows) para construir, testar, empacotar e implantar projetos diretamente do seu repositório GitHub.
+
+Aqui está um exemplo prático de como você pode usar o GitHub Actions para executar testes automatizados em um projeto Node.js:
+
+1. **Crie um Arquivo de Configuração para o Workflow:**
+   Crie um arquivo chamado `.github/workflows/test.yml` no seu repositório. Este arquivo conterá a configuração do seu workflow.
+name: Testes Node.js
+```yaml
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout do Código
+      uses: actions/checkout@v2
+
+    - name: Configurar Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14
+
+    - name: Instalar Dependências
+      run: npm install
+
+    - name: Executar Testes
+      run: npm test
+```
+2. **Commit e Push:**
+   Faça um commit e push do arquivo de configuração do workflow para o seu repositório.
+```bash
+git add .github/workflows/test.yml
+git commit -m "Adicionar workflow de testes"
+git push
+```
+
+3. **Veja o Workflow em Ação:**
+Vá até a seção "Actions" no seu repositório no GitHub. Você verá o status do workflow de testes em execução. O GitHub Actions executará automaticamente o workflow sempre que houver um push ou pull request, proporcionando automação contínua.
+
+Referência: [GitHub Actions][https://docs.github.com/en/actions].
+
+### Git LFS (Large File Storage)
+O Git Large File Storage (LFS) é uma extensão do Git que lida especificamente com grandes arquivos binários, ajudando a melhorar o desempenho do Git ao lidar com esses tipos de arquivos. Ele substitui automaticamente grandes arquivos binários no seu repositório Git por referências pequenas, mantendo os arquivos reais em um armazenamento externo.
+
+Aqui está um exemplo prático do uso do Git LFS:
+###### Configuração Inicial
+
+1. **Instalar o Git LFS:** Certifique-se de ter o Git LFS instalado no seu sistema. Você pode baixá-lo e instalá-lo a partir do site oficial ou usar um gerenciador de pacotes.
+
+2. **Iniciar um Novo Repositório:** Crie um novo repositório Git ou use um existente.
+`git init`
+
+3. **Configurar o Git LFS:** Ative o Git LFS no repositório.
+`git lfs install`
+
+###### Adicionar Arquivos Binários
+**Rastrear Tipos de Arquivos com o Git LFS:** Digamos que você tenha um arquivo binário grande, como um arquivo de imagem, que você deseja rastrear com o Git LFS. Use o seguinte comando para rastrear arquivos com a extensão .png:
+`git lfs track "*.png"`
+Isso cria ou atualiza o arquivo `.gitattributes`, indicando ao Git LFS para gerenciar os arquivos com a extensão .png .
+
+-**Adicionar e Comitar Arquivos:**
+Adicione e confirme os arquivos ao repositório.
+`git add .`
+`git commit -m "Adicionar arquivos PNG usando Git LFS"`
+Ao commitar, o Git LFS substituirá automaticamente os arquivos binários pelo ponteiro correspondente.
+
+- **Push para o Repositório Remoto:**
+Faça o push dos seus commits para o repositório remoto.
+`git push origin master`
+###### Clone e Pull em Outros Locais
+
+- **Clone do Repositório em Outro Local:** Em outro local, clone o repositório.
+  `git clone https://github.com/seu-usuario/seu-repositorio.git`
+  
+- **Pull dos Arquivos com o Git LFS:** Quando você clona ou faz pull em um repositório com arquivos gerenciados pelo Git LFS, você precisa garantir que tenha o Git LFS instalado e executar o comando `git lfs pull` para baixar os arquivos reais.
+`git lfs pull`
+
+
+Referência: [Git LFS][https://git-lfs.github.com/].
+
+### OAuth
+OAuth (Open Authorization) é um protocolo de autorização amplamente utilizado na web para permitir que aplicativos e serviços obtenham acesso autorizado a recursos em nome de um usuário, sem a necessidade de compartilhar suas credenciais de login. O OAuth é comumente usado em cenários nos quais um aplicativo precisa acessar dados protegidos ou realizar ações em nome do usuário em serviços web.
+
+Aqui está uma explicação geral de como o OAuth funciona:
+
+- **Solicitação de Autorização:** O aplicativo cliente (que deseja acessar recursos protegidos) redireciona o usuário para o provedor de serviços (como o GitHub) para autenticação.
+- **Autenticação do Usuário:**  O usuário fornece suas credenciais ao provedor de serviços e autentica-se.
+- **Concessão de Autorização:** Após a autenticação bem-sucedida, o provedor de serviços pede ao usuário para conceder permissão ao aplicativo cliente.
+- **Obtenção do Token de Acesso:** Uma vez concedida a permissão, o provedor de serviços emite um token de acesso para o aplicativo cliente.
+- **Acesso aos Recursos Protegidos:** O aplicativo cliente usa o token de acesso para fazer solicitações aos recursos protegidos em nome do usuário.
+
+Agora, um exemplo prático do uso do OAuth no GitHub:
+- **Registro do Aplicativo no GitHub:**  Para usar o OAuth no GitHub, você primeiro precisa registrar seu aplicativo no GitHub. Isso envolve fornecer informações como o nome do aplicativo, uma descrição e a URL de redirecionamento.
+- **Obtenção das Credenciais do Cliente:** Após o registro, você recebe um Client ID e um Client Secret. Essas são suas credenciais de cliente.
+- **Redirecionamento do Usuário para a Página de Autorização do GitHub:** Quando um usuário deseja usar seu aplicativo, você redireciona o usuário para a página de autorização do GitHub, incluindo seu Client ID e uma URL de redirecionamento.
+ `https://github.com/login/oauth/authorize client_id=SEU_CLIENT_ID&redirect_uri=SUA_URL_DE_REDIR`
+- **Autorização do Usuário:** O usuário faz login no GitHub (se ainda não estiver logado) e concede permissões ao seu aplicativo.
+- **GitHub Redireciona de Volta com o Código de Autorização:** Após a autorização, o GitHub redireciona o usuário de volta para a URL de redirecionamento do seu aplicativo, incluindo um código de autorização.
+- **Obtenção do Token de Acesso:** Seu servidor de back-end troca o código de autorização por um token de acesso, fazendo uma solicitação para a URL do token do GitHub.
+`POST https://github.com/login/oauth/access_token`   
+- **Acesso aos Recursos Protegidos:** Com o token de acesso, seu aplicativo pode fazer solicitações à API do GitHub em nome do usuário autenticado.
+
+Este é um fluxo básico do OAuth no contexto do GitHub. O uso do OAuth é uma prática comum para integrar aplicativos de terceiros com serviços web, como o GitHub, de maneira segura e sem a necessidade de compartilhar senhas.
+
+Referência: [OAuth][https://docs.github.com/en/developers/apps/building-oauth-apps].
+
+### Actions Runners 
+GitHub Actions Runners são máquinas virtuais ou físicas configuradas para executar trabalhos (jobs) em GitHub Actions. Os runners permitem que você execute seus fluxos de trabalho (workflows) em ambientes personalizados, proporcionando flexibilidade para realizar tarefas específicas do seu projeto. Os runners podem ser hospedados pelo GitHub (runners hospedados) ou por você mesmo (runners auto-hospedados).
+
+- **GitHub Actions Runner Hospedado:** O GitHub fornece runners hospedados em execução em ambientes virtuais gerenciados pelo GitHub. Eles são adequados para a maioria dos casos de uso.
+- **GitHub Actions Runner Auto-hospedado:** Você pode configurar e hospedar seus próprios runners em seus próprios ambientes, como máquinas físicas, VMs ou contêineres, permitindo maior personalização e controle.
+
+**Exemplo prático**: Um exemplo prático usando GitHub Actions com um runner hospedado para realizar uma simples tarefa de CI/CD (Integração Contínua e Implantação Contínua):
+
+- **Criar um Arquivo de Configuração do Workflow:** Crie um arquivo chamado `.github/workflows/main.yml` no seu repositório
+```yaml
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout do Código
+      uses: actions/checkout@v2
+
+    - name: Configurar Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14
+
+    - name: Instalar Dependências
+      run: npm install
+
+    - name: Executar Testes
+      run: npm test
+
+    - name: Fazer Deploy (Simulado)
+      run: echo "Deploying to production..."
+
+```
+Este exemplo cria um workflow que é acionado em cada push para a branch `main`. Ele usa um runner hospedado com Ubuntu, configura o Node.js, instala as dependências do projeto, executa os testes e, em seguida, realiza uma simulação de implantação.
+
+**Commit e Push:** Um commit e push do arquivo de configuração do workflow para o seu repositório.
+```bash
+git add .github/workflows/main.yml
+git commit -m "Adicionar workflow de CI/CD"
+git push
+```
+
+- **Veja o Workflow em Ação:** Vá até a seção "Actions" no seu repositório no GitHub. Você verá o status do workflow de CI/CD em execução. O GitHub Actions executará automaticamente o workflow sempre que houver um push na branch `main`.
+
+Referência: [GitHub Actions Runners][https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners].
+
+### Markdown
+O Markdown é uma linguagem de marcação leve que é amplamente utilizada para formatação de texto na web. No contexto do GitHub, o Markdown é usado para formatar READMEs de repositórios, issues, pull requests, e outros documentos. Ele fornece uma maneira simples e legível de criar documentos com formatação básica, como títulos, listas, links, imagens e mais.
+
+Aqui está um exemplo prático de como usar Markdown no GitHub:
+
+- **Criar um Arquivo README.md:** Em um repositório do GitHub, adicione um arquivo chamado `README.md`. Este arquivo será exibido na página inicial do seu repositório.
+  
+- **Adicionar Títulos:** Use `#` para criar títulos. Quanto mais `#` você usar, menor será o título.
+```
+# Meu Projeto
+
+## Introdução
+
+Bem-vindo ao meu projeto!
+```
+
+- **Criar Listas:** Use `*` ou `-` para criar listas não ordenadas e números para listas ordenadas.
+```
+## Recursos
+
+- Funcionalidade A
+- Funcionalidade B
+- Funcionalidade C
+
+## Tarefas Pendentes
+
+1. Implementar Funcionalidade A
+2. Testar Funcionalidade B
+3. Corrigir Bug em C
+```
+
+- **Adicionar Links:** Use `[Texto do Link](URL)` para adicionar links.
+```
+## Saiba Mais
+
+Para obter mais informações, visite [a página oficial](https://exemplo.com).
+```
+
+Referência: [Mastering Markdown][https://guides.github.com/features/mastering-markdown/].
+
+### Octicons
+Os Octicons são um conjunto de ícones vetoriais criados pela GitHub. Eles são usados na interface do usuário do GitHub para fornecer ícones consistentes e amigáveis em toda a plataforma. Os ícones são projetados para serem usados em diversas situações, desde navegação até ações específicas do usuário.
+
+Os Octicons podem ser usados não apenas na interface do usuário do GitHub, mas também em projetos externos. GitHub disponibiliza os Octicons como uma fonte, o que facilita sua inclusão em projetos web.
+
+Aqui está um exemplo prático do uso de Octicons em um arquivo Markdown no GitHub:
+
+```
+## Exemplo com Octicons
+
+- Ícone de problema (issue):
+  - :bug: `:bug:` - Resolveu um problema!
+
+- Ícone de solicitação de pull (pull request):
+  - :pull_request: `:pull_request:` - Solicitou um pull request!
+
+- Ícone de estrela (star):
+  - :star: `:star:` - Estrelou este projeto!
+
+- Ícone de olho (watch):
+  - :eyes: `:eyes:` - Está observando este repositório!
+
+- Ícone de forquilha (fork):
+  - :fork_and_knife: `:fork_and_knife:` - Fez um fork deste projeto!
+
+- Ícone de balão de diálogo (comment):
+  - :speech_balloon: `:speech_balloon:` - Comentou em uma issue!
+
+- Ícone de coração (heart):
+  - :heart: `:heart:` - Ama o GitHub!
+```
+
+Para usar esses ícones em seus próprios documentos Markdown no GitHub, basta copiar e colar os códigos correspondentes. Os códigos entre colons (`:código:`) são substituídos pelos ícones correspondentes quando renderizados no GitHub.
+
+Referência: [Octicons][https://octicons.github.com/].
 
 
 ## fontes
