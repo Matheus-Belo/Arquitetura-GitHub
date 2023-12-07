@@ -446,7 +446,109 @@ Para usar esses ícones em seus próprios documentos Markdown no GitHub, basta c
 
 Referência: [Octicons][https://octicons.github.com/].
 
+# Descrição das tecnologias
+O GitHub é uma plataforma complexa que utiliza uma variedade de tecnologias para fornecer seus serviços. 
+Abaixo, daremos uma breve explicação de algumas das tecnologias presentes e como são utilizadas no GitHub. 
+No entanto, é importante observar que informações específicas sobre as tecnologias exatas utilizadas pelo GitHub 
+podem não ser totalmente divulgadas publicamente pela empresa.
 
+### Ruby
+#### Explicação
+Ruby é uma linguagem de programação dinâmica e de alto nível. 
+O GitHub é conhecido por ter sido construído originalmente usando Ruby on Rails, um framework web Ruby.
+
+#### Uso no GitHub
+Ruby, junto com o Ruby on Rails, foi fundamental para o desenvolvimento inicial do GitHub.
+GitHub é amplamente construído usando a linguagem de programação Ruby. Ruby on Rails, 
+um framework web em Ruby, é usado para desenvolver grande parte da aplicação web do GitHub.
+
+### Python  
+#### Explicação
+Python é uma linguagem de programação de propósito geral conhecida por sua simplicidade e legibilidade.
+
+#### Uso no GitHub
+GitHub utiliza Python em várias áreas, incluindo para scripts de automação, ferramentas e integrações.
+Embora Ruby seja a principal linguagem de programação, o GitHub também incorpora Python em várias áreas. Por exemplo, a ferramenta de integração contínua Travis CI, 
+frequentemente utilizada para testes de código em repositórios GitHub, é escrita em Python.
+
+### Arquiteturas de Microsserviços
+#### Explicação
+Microsserviços é uma arquitetura de software onde um aplicativo é dividido em serviços independentes que se comunicam entre si.
+
+#### Uso no GitHub
+Os microsserviços no GitHub ajudam a modularizar e escalar diferentes partes da aplicação, facilitando a manutenção e o desenvolvimento contínuo.
+O GitHub adota uma arquitetura baseada em microsserviços, o que significa que diferentes partes da aplicação são construídas e implantadas como serviços independentes. 
+Cada microsserviço tem uma responsabilidade específica, facilitando a escalabilidade e a manutenção.
+
+### Amazon S3
+#### Explicação
+Amazon Simple Storage Service (S3) é um serviço de armazenamento em nuvem escalável da Amazon Web Services (AWS).
+
+#### Uso no GitHub
+O GitHub utiliza o Amazon S3 para armazenar e gerenciar grandes volumes de dados, como arquivos de código, imagens e outros ativos de repositórios.
+
+### GraphQL
+#### Explicação
+GraphQL é uma linguagem de consulta para APIs,é utilizado para permitir que os clientes solicitem apenas os dados necessários
+também é um ambiente de execução para executar essas consultas com os dados existentes.
+
+#### Uso no GitHub
+No GitHub, o GraphQL é usado para otimizar as consultas aos servidores, melhorando a eficiência na transferência de dados entre o cliente e o servidor.
+
+### Elasticsearch
+#### O que é o Elasticsearch:
+O Elasticsearch é um mecanismo de busca e análise distribuído, desenvolvido para lidar com grandes volumes de dados de maneira rápida e escalável. Ele é baseado no Apache Lucene e fornece uma interface JSON para pesquisas avançadas, permitindo indexação eficiente e recuperação de informações em tempo real.
+
+#### Para que serve o Elasticsearch:
+O Elasticsearch é utilizado para indexação e busca eficiente em grandes conjuntos de dados. Ele é frequentemente empregado em casos de uso que demandam busca textual avançada, análise de logs, monitoramento de aplicações e análise de dados. Sua capacidade de escalabilidade horizontal torna-o ideal para lidar com grandes volumes de dados distribuídos.
+
+#### Como usar o Elasticsearch:
+
+1. Indexação de Dados: Antes de realizar pesquisas, é necessário indexar os dados no Elasticsearch. Isso envolve estruturar os dados em documentos JSON e armazená-los no índice do Elasticsearch.
+
+2. Consulta de Dados: Utilizando a linguagem de consulta DSL (Domain Specific Language) do Elasticsearch, os usuários podem realizar consultas complexas para recuperar dados específicos. A busca pode incluir filtros, ordenações e operações de agregação.
+
+3. Análise de Dados: Além da busca, o Elasticsearch fornece recursos poderosos para análise de dados. Agregações, métricas e outras funcionalidades são empregadas para extrair insights valiosos dos conjuntos de dados.
+
+#### Como o GitHub usa o Elasticsearch:
+O GitHub faz uso do Elasticsearch para aprimorar a experiência de pesquisa em sua plataforma. A integração do Elasticsearch no GitHub permite que os usuários encontrem rapidamente repositórios, códigos-fonte e outros recursos. Ele ajuda na indexação eficiente de dados, permitindo que as consultas de pesquisa sejam realizadas de maneira rápida e precisa.
+O Elasticsearch desempenha um papel fundamental na funcionalidade de pesquisa da plataforma. Com milhões de repositórios e uma quantidade massiva de dados associados a cada um deles, uma busca eficiente é crucial para que os usuários encontrem rapidamente o código, problemas, solicitações de pull e outros artefatos relevantes.
+
+O Elasticsearch indexa e armazena metadados e conteúdo textual dos repositórios no GitHub, permitindo que os usuários realizem buscas complexas de maneira rápida e precisa. Isso melhora significativamente a experiência do usuário, tornando o GitHub uma plataforma eficaz para colaboração e desenvolvimento de software.
+
+#### Exemplos Práticos do Uso do Elasticsearch no GitHub:
+
+##### Pesquisa em Repositórios:
+
+* Funcionalidade: Imagine que um desenvolvedor está procurando por um código específico em todos os repositórios do GitHub.
+Exemplo de Consulta Elasticsearch: O usuário envia uma consulta Elasticsearch para buscar por um termo específico, como uma função ou variável, e recebe rapidamente uma lista de resultados relevantes, ordenados por relevância.
+
+##### Busca Avançada em Problemas (Issues):
+
+* Funcionalidade: Um usuário quer encontrar problemas (issues) em projetos open source que foram marcados como "bug" e foram abertos nos últimos 7 dias.
+Exemplo de Consulta Elasticsearch: Uma consulta Elasticsearch incluiria parâmetros para filtrar problemas abertos recentemente e marcados como bugs. Os resultados são retornados de maneira rápida, permitindo uma resposta ágil às questões relatadas.
+
+##### Análise de Logs e Monitoramento:
+
+* Funcionalidade: O GitHub usa Elasticsearch para monitorar logs e métricas em tempo real para garantir a estabilidade e o desempenho da plataforma.
+* Exemplo de Consulta Elasticsearch: Consultas podem ser executadas para analisar logs de erros, identificar padrões de uso ou monitorar métricas de desempenho. Isso ajuda a equipe de operações a tomar medidas proativas para manter a integridade do sistema.
+
+##### Pesquisa em Código-Fonte:
+
+* Funcionalidade: Um desenvolvedor procura por todas as ocorrências de uma função específica em diferentes repositórios.
+* Exemplo de Consulta Elasticsearch: A consulta Elasticsearch incluiria filtros para restringir a pesquisa apenas ao conteúdo do código-fonte. Os resultados são retornados rapidamente, permitindo que o desenvolvedor navegue e encontre as instâncias desejadas.
+
+##### Agregações para Estatísticas:
+
+* Funcionalidade: A equipe do GitHub quer analisar estatísticas sobre a utilização de uma linguagem de programação específica em todos os repositórios.
+* Exemplo de Consulta Elasticsearch: Agregações do Elasticsearch podem ser usadas para contar a quantidade de ocorrências de códigos em uma linguagem específica. Isso fornece estatísticas valiosas sobre as preferências e tendências de linguagens de programação na plataforma.
+
+#####  
+Esses exemplos destacam como o Elasticsearch no GitHub não apenas facilita a busca por informações específicas, mas também suporta casos de uso avançados, como monitoramento, análise de logs e extração de insights estatísticos a partir dos dados armazenados na plataforma.
+
+
+
+Essas tecnologias juntas contribuem para a robustez, escalabilidade e eficiência do GitHub, permitindo que ele lide com uma enorme quantidade de dados e tráfego de usuários enquanto fornece uma experiência de usuário rápida e eficiente.
 ## fontes
 - https://github.blog/2023-04-06-building-github-with-ruby-and-rails/
 - https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/about-organizations
@@ -464,3 +566,9 @@ Referência: [Octicons][https://octicons.github.com/].
 - https://github.blog/2018-10-30-oct21-post-incident-analysis/
 - https://github.blog/2017-10-12-evolution-of-our-data-centers/
 - https://docs.github.com/en/repositories/archiving-a-github-repository/backing-up-a-repository
+- https://www.elastic.co/pt/elasticsearch/
+- https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
+- https://githubengineering.com/
+- https://docs.github.com/en
+- https://stackshare.io/github/github
+- https://docs.github.com/en/graphql
