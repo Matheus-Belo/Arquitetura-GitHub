@@ -542,8 +542,7 @@ Exemplo de Consulta Elasticsearch: Uma consulta Elasticsearch incluiria parâmet
 
 * Funcionalidade: A equipe do GitHub quer analisar estatísticas sobre a utilização de uma linguagem de programação específica em todos os repositórios.
 * Exemplo de Consulta Elasticsearch: Agregações do Elasticsearch podem ser usadas para contar a quantidade de ocorrências de códigos em uma linguagem específica. Isso fornece estatísticas valiosas sobre as preferências e tendências de linguagens de programação na plataforma.
-
-#####  
+  
 Esses exemplos destacam como o Elasticsearch no GitHub não apenas facilita a busca por informações específicas, mas também suporta casos de uso avançados, como monitoramento, análise de logs e extração de insights estatísticos a partir dos dados armazenados na plataforma.
 
 
